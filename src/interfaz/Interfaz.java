@@ -690,6 +690,7 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     private void actualizarProcesos() {
+        this.listaProcesos.setText("");
         for (int i = 0; i < contadorProceso; i++) {
             this.listaProcesos.append("ID Proceso " + Integer.toString(procesos[i].getIdProceso()) + " Nombre: " + procesos[i].getNombre() + " Tamaño: " + Integer.toString(procesos[i].getTamaño()) + " Cantidad de paginas: " + Integer.toString(procesos[i].getCantidadPaginas()) + " Estado: " + procesos[i].getEstado() + " Cantidad de paginas en memoria principal: " + Integer.toString(procesos[i].getPaginasMemoriaPrincipal()) + " Cantidad de paginas en memoria secundaria: " + Integer.toString(procesos[i].getPaginasMemoriaSecundaria()) + "\n");
         }
