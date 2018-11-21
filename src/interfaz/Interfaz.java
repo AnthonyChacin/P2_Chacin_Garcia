@@ -5,7 +5,6 @@
  */
 package interfaz;
 
-import javax.swing.table.DefaultTableModel;
 import logica.MemoriaVirtual;
 import logica.Proceso;
 
@@ -508,7 +507,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_tamPagActionPerformed
 
     private void establecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_establecerActionPerformed
-        if (this.tamMP.getText() != "" && this.tamMS.getText() != "" && this.tamPag.getText() != "") {
+        if (!"".equals(this.tamMP.getText()) && !"".equals(this.tamMS.getText()) && !"".equals(this.tamPag.getText())) {
             int tamMemoriaP = Integer.parseInt(tamMP.getText());
             int tamMemoriaS = Integer.parseInt(tamMS.getText());
             int tamPagina = Integer.parseInt(tamPag.getText());
