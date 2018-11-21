@@ -17,8 +17,8 @@ import logica.Proceso;
 public class Interfaz extends javax.swing.JFrame {
 
     private MemoriaVirtual memoriaVirtual;
-    //private Proceso procesos[];
-    private Queue<Proceso> procesos;
+    private Proceso procesos[];
+    //private Queue<Proceso> procesos;
 
     public Interfaz() {
         initComponents();
@@ -523,8 +523,8 @@ public class Interfaz extends javax.swing.JFrame {
             } else {
                 this.mensajes.setText("Recuerde que los valores ingresados deben ser potencias de 2");
             }
-            //this.procesos = new Proceso[memoriaVirtual.getMaxCantPag()];//la cantidad maxima de procesos que se aceptan en el sistema es igual a la cantidad maxima de paginas, ya que un proceso ocupa al menos una pagina
-            this.procesos = new LinkedList();
+            this.procesos = new Proceso[memoriaVirtual.getMaxCantPag()];//la cantidad maxima de procesos que se aceptan en el sistema es igual a la cantidad maxima de paginas, ya que un proceso ocupa al menos una pagina
+            //this.procesos = new LinkedList();
             this.establecer.setEnabled(false);
             this.tamMemoriaP.setText(Integer.toString(tamMemoriaP));
             this.cantMPDispon.setText(Integer.toString(tamMemoriaP));
@@ -549,19 +549,19 @@ public class Interfaz extends javax.swing.JFrame {
                 int tamanioProceso = Integer.parseInt(this.tamProceso.getText());
                 int tamanioPag = Integer.parseInt(this.tamPag.getText());
                 //int idProceso, String nombre, int tamaño, int tamañoPagina
-                        
-                Proceso p = new Proceso(1, this.nombreProceso.getText(), tamanioProceso, tamanioPag);
-                p.crearPaginas();
-                for(int i = 0; i < p.getTablaPaginas().length; i++){
-                    this.memoriaVirtual.getMemoriaP()[i] = p.getTablaPaginas()[i];
-                    System.out.println(" " + this.memoriaVirtual.getMemoriaP()[i].getIdProceso());
+                
+                this.procesos[0] = new Proceso(1, this.nombreProceso.getText(), tamanioProceso, tamanioPag);
+                for(int i = 0; i < this.procesos[0].getTablaPaginas().length; i++){
+                    this.memoriaVirtual.getMemoriaP()[i] = this.procesos[0].getTablaPaginas()[i];
                 }
+                
+                this.memoriaPrincipal.setText("");
                 this.mostrarMemoriaPrincipal();
-                this.memoriaPrincipal.append("hola");
+
                 //this.procesos.add(new Proceso())
                 
             } catch (Exception e) {
-
+                System.out.println(" " + e);
             }
         }
     }//GEN-LAST:event_crearProcesoActionPerformed

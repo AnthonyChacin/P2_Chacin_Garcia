@@ -59,6 +59,16 @@ public class MemoriaVirtual {
             this.memoriaP[i] = new Pagina(i);
         }
     }
+    
+    public void paginarMemoriaPrincipalCP(int cantPNP, Pagina[] tp ){
+        for (int i = 0; i < this.cantMarcos; i++) {
+            if(this.memoriaP[i].getIdProceso() == null){
+                for(int j = i; j < (i + tp.length); j++){
+                    
+                }
+            }
+        }
+    }
 
     public void paginarMemoriaSecundaria() {
         for (int i = 0; i < this.cantMaxPagMS; i++) {

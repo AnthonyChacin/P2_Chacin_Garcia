@@ -33,14 +33,16 @@ public class Proceso {
 
     public void crearPaginas() {
         for (int i = 0; i < this.cantidadPaginas; i++) {
-            this.tablaPaginas[i] = new Pagina(this.idProceso, this.nombre, i, null);
+            this.tablaPaginas[i] = new Pagina(this.idProceso, this.nombre, i, true);
         }
     }
     
     public int cantidadPaginas(int tamaño, int tamañoPagina) {
-        if (tamaño % tamañoPagina != 0)
-            return ((int)(tamaño / tamañoPagina) + 1);
-        return tamaño / tamañoPagina;
+        if (tamaño % tamañoPagina != 0){
+            return ( (int)( (tamaño / tamañoPagina) + 1) );
+        }else{
+            return tamaño / tamañoPagina;
+        }
     }
 
     public Pagina[] getTablaPaginas() {
