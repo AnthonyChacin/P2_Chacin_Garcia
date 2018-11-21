@@ -11,19 +11,11 @@ package logica;
  */
 public class Pagina {
 
-    private Integer idProceso; //id del proceso que se encuentra en la pagina
-    private String nombreProceso;//nombre asignado al proceso
-    private int idMarco;//cada marco en memoria principal tiene un id, la pagina va a tener asociada un id de marco si la pagina se encuentra cargada en memoria principal
+    private Integer idProceso;
+    private String nombreProceso;
+    private Integer idMarco;
     private Integer idPagina;
-    private boolean principal;//un boolean para saber si la pagina se encuentra en memoria principal o no
-
-    public Pagina(int idMarco) {
-        this.idMarco = idMarco;
-        this.principal = true;//si se utiliza este constructor de pagina, quiere decir que corresponde a una pagina cargada en memoria principal
-        this.idProceso = null;//Como se esta creando la pagina y todavia no se le esta asignando ningun proceso, el idProceso es null
-        this.nombreProceso = "";//inicialmente no tiene proceso asignado
-        this.idPagina = null;
-    }
+    private Boolean principal;
 
     public Pagina(int idProceso, String nombreProceso, int idPagina, Boolean principal) {
         this.idProceso = idProceso;
@@ -32,23 +24,52 @@ public class Pagina {
         this.principal = principal;
     }
 
-    public int getIdMarco() {
-        return idMarco;
+    public Pagina(int idMarco) {
+        this.idMarco = idMarco;
+        this.principal = true;
+        this.idProceso = null;
+        this.nombreProceso = "";
+        this.idPagina = null;
     }
 
     public Integer getIdProceso() {
         return idProceso;
     }
 
+    public void setIdProceso(Integer idProceso) {
+        this.idProceso = idProceso;
+    }
+
     public String getNombreProceso() {
         return nombreProceso;
+    }
+
+    public void setNombreProceso(String nombreProceso) {
+        this.nombreProceso = nombreProceso;
+    }
+
+    public Integer getIdMarco() {
+        return idMarco;
+    }
+
+    public void setIdMarco(Integer idMarco) {
+        this.idMarco = idMarco;
     }
 
     public Integer getIdPagina() {
         return idPagina;
     }
-    
-    
-    
-    
+
+    public void setIdPagina(Integer idPagina) {
+        this.idPagina = idPagina;
+    }
+
+    public Boolean getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Boolean principal) {
+        this.principal = principal;
+    }
+
 }
