@@ -81,6 +81,10 @@ public class MemoriaVirtual {
     public int getTamPagina() {
         return tamPagina;
     }
+
+    public Pagina[] getMemoriaS() {
+        return memoriaS;
+    }
     
     
 
