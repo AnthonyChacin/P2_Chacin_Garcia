@@ -5,7 +5,9 @@
  */
 package interfaz;
 
+import javax.swing.table.DefaultTableModel;
 import logica.MemoriaVirtual;
+import logica.Pagina;
 import logica.Proceso;
 
 /**
@@ -16,6 +18,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private MemoriaVirtual memoriaVirtual;
     private Proceso procesos[];
+    private int contadorProceso = 0;
 
     public Interfaz() {
         initComponents();
@@ -74,6 +77,10 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         memoriaSecundaria = new javax.swing.JTextArea();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listaProcesos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
@@ -378,6 +385,37 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel6.setBackground(new java.awt.Color(0, 204, 255));
+
+        jLabel19.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("PROCESOS");
+
+        listaProcesos.setColumns(20);
+        listaProcesos.setRows(5);
+        jScrollPane4.setViewportView(listaProcesos);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel19)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -385,55 +423,57 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tamMSecundaria))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tamPagina))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cantMarcos))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cantProcesos))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tamMSecundaria))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tamPagina))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cantMarcos))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cantProcesos))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jLabel6)
+                                                    .addGap(33, 33, 33)))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(33, 33, 33)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(12, 12, 12)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(tamMemoriaP)
-                                        .addComponent(cantMPDispon)
-                                        .addComponent(mPUsada)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cantMSDispon)))
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                                .addComponent(jLabel8)
+                                                .addGap(12, 12, 12)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(tamMemoriaP)
+                                            .addComponent(cantMPDispon)
+                                            .addComponent(mPUsada)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cantMSDispon)))
+                                .addComponent(jLabel5))
+                            .addGap(18, 18, 18)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,14 +521,16 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,40 +549,49 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_tamPagActionPerformed
 
     private void establecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_establecerActionPerformed
-        if (!"".equals(this.tamMP.getText()) && !"".equals(this.tamMS.getText()) && !"".equals(this.tamPag.getText())) {
-            int tamMemoriaP = Integer.parseInt(tamMP.getText());
-            int tamMemoriaS = Integer.parseInt(tamMS.getText());
-            int tamPagina = Integer.parseInt(tamPag.getText());
-            if ((tamMemoriaP % 2) == 0 && (tamMemoriaS % 2) == 0 && (tamPagina % 2) == 0) {
-                if (tamMemoriaP > tamPagina) {
-                    this.memoriaVirtual = new MemoriaVirtual(tamMemoriaP, tamMemoriaS, tamPagina);
-                } else {
-                    this.mensajes.setText("El tamaño de página indicado es mayor que el tamaño indicado para la memoria principal");
-                }
+        int tamañoMemoria = Integer.parseInt(this.tamMP.getText());
+        int tamañoSecundario = Integer.parseInt(this.tamMS.getText());
+        int tamañoPagina = Integer.parseInt(this.tamPag.getText());
+        if ((tamañoMemoria % 2) == 0 && (tamañoSecundario % 2) == 0 && (tamañoPagina % 2) == 0) {
+            if (tamañoMemoria > tamañoPagina) {
+                this.memoriaVirtual = new MemoriaVirtual(tamañoMemoria, tamañoSecundario, tamañoPagina, this.mensajes);
             } else {
-                this.mensajes.setText("Recuerde que los valores ingresados deben ser potencias de 2");
+                // tamaño de pagina mayor que la memoria
             }
-            this.procesos = new Proceso[memoriaVirtual.getMaxCantPag()];//la cantidad maxima de procesos que se aceptan en el sistema es igual a la cantidad maxima de paginas, ya que un proceso ocupa al menos una pagina
-            this.establecer.setEnabled(false);
-            this.tamMemoriaP.setText(Integer.toString(tamMemoriaP));
-            this.cantMPDispon.setText(Integer.toString(tamMemoriaP));
-            this.mPUsada.setText("0");
-            this.cantProcesos.setText("0");
-            this.cantMarcos.setText(Integer.toString(this.memoriaVirtual.getCantMarcos()));
-            this.tamPagina.setText(Integer.toString(tamPagina));
-            this.tamMSecundaria.setText(Integer.toString(tamMemoriaS));
-            this.cantMSDispon.setText(Integer.toString(tamMemoriaS));
-            this.crearProceso.setEnabled(true);
-            this.mensajes.append("Los tamaños de la memoria principal, secundaria y de las páginas han sido establecidos con éxito\n");
-            this.mostrarMemoriaPrincipal();
-            this.mostrarMemoriaSecundaria();
         } else {
-            this.mensajes.append("Los campos correspondientes a la sección de inicio son obligatorios para iniciar la simulación");
+            // Solo multiplos de 2
         }
+        this.procesos = new Proceso[memoriaVirtual.getMaximasPaginas()];
+        this.establecer.setEnabled(false);
+        this.tamMemoriaP.setText(Integer.toString(tamañoMemoria));
+        this.cantMPDispon.setText(Integer.toString(tamañoMemoria));
+        this.mPUsada.setText("0");
+        this.cantProcesos.setText("0");
+        this.cantMarcos.setText(Integer.toString(memoriaVirtual.getCantidadMarcos()));
+        this.tamPagina.setText(Integer.toString(tamañoPagina));
+        this.cantMSDispon.setText(Integer.toString(memoriaVirtual.getMemoriaSecundaria()));
+        this.tamMSecundaria.setText(Integer.toString(memoriaVirtual.getMemoriaSecundariaTotal()));
+        this.crearProceso.setEnabled(true);
+        this.mensajes.append("- Ha comenzado el programa de manejo de memoria virtual\n");
+        actualizarMemoriaPrincipal();
+        actualizarMemoriaSecundaria();
     }//GEN-LAST:event_establecerActionPerformed
 
     private void crearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearProcesoActionPerformed
-
+        String nombreProceso = this.nombreProceso.getText();
+        int tamañoProceso = Integer.parseInt(this.tamProceso.getText());
+        if (tamañoProceso <= memoriaVirtual.getMemoriaPrincipal() + memoriaVirtual.getMemoriaSecundaria()) {
+            moverRamdomMemoriaToAlmacenamiento();
+            this.procesos[contadorProceso] = new Proceso(contadorProceso, nombreProceso, tamañoProceso, memoriaVirtual.getTamañoPagina());
+            this.memoriaVirtual.agregarProceso(this.procesos[contadorProceso]);
+            this.mensajes.append("- Se ha creado un proceso de un tamaño " + tamañoProceso + ", su id es '" + contadorProceso + "', y el numero de paginas que posee son " + tamañoProceso / memoriaVirtual.getTamañoPagina() + "\n");
+            contadorProceso++;
+            this.cantProcesos.setText(Integer.toString(contadorProceso));
+            this.nombreProceso.setText("Proceso " + contadorProceso);
+            actualizar();
+        } else {
+            this.mensajes.append("* ALERTA: No hay suficiente espacio en la memoria principal + la memoria secundaria para crear el proceso.\n");
+        }
     }//GEN-LAST:event_crearProcesoActionPerformed
 
     /**
@@ -578,29 +629,68 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
 
-    public void mostrarMemoriaPrincipal() {
-        for (int i = 0; i < this.memoriaVirtual.getMemoriaP().length; i++) {
-            int direccion = (this.memoriaVirtual.getMemoriaP()[i].getIdMarco() * memoriaVirtual.getTamPagina());
-            if (this.memoriaVirtual.getMemoriaP()[i].getIdProceso() != null && this.memoriaVirtual.getMemoriaP()[i].getIdPagina() != null) {
-                this.memoriaPrincipal.append("Dirección física:" + " " + "0x" + Integer.toHexString(direccion) + " " + "Nro. Marco: " + Integer.toString(this.memoriaVirtual.getMemoriaP()[i].getIdMarco() + 1) + " ID Proceso: " + Integer.toString(this.memoriaVirtual.getMemoriaP()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getMemoriaP()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getMemoriaP()[i].getIdPagina()) + "\n");
+    private void actualizarMemoriaPrincipal() {
+        this.memoriaPrincipal.append("");
+        for (int i = 0; i < this.memoriaVirtual.getMemoria().length; i++) {
+            if (this.memoriaVirtual.getMemoria()[i].getIdProceso() != null && this.memoriaVirtual.getMemoria()[i].getIdPagina() != null) {
+                int direccion = (this.memoriaVirtual.getMemoria()[i].getIdMarco() * memoriaVirtual.getTamañoPagina());
+                this.memoriaPrincipal.append("0x" + Integer.toHexString(direccion) + " #Marco: " + Integer.toString(this.memoriaVirtual.getMemoria()[i].getIdMarco() + 1) + "ID Proceso: " + Integer.toString(this.memoriaVirtual.getMemoria()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getMemoria()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getMemoria()[i].getIdPagina()) + "\n");
             } else {
-                this.memoriaPrincipal.append("Dirección física:" + " " + "0x" + Integer.toHexString(direccion) + " " + "Nro. Marco: " + Integer.toString(this.memoriaVirtual.getMemoriaP()[i].getIdMarco() + 1) + " Marco disponible\n");
+                int direccion = (this.memoriaVirtual.getMemoria()[i].getIdMarco() * memoriaVirtual.getTamañoPagina());
+                this.memoriaPrincipal.append("0x" + Integer.toHexString(direccion) + " #Marco: " + Integer.toString(this.memoriaVirtual.getMemoria()[i].getIdMarco() + 1) + " Disponible\n");
             }
         }
     }
 
-    private void mostrarMemoriaSecundaria() {
-
-        for (int i = 0; i < this.memoriaVirtual.getMemoriaS().length; i++) {
-            if (this.memoriaVirtual.getMemoriaS()[i].getIdProceso() != null && this.memoriaVirtual.getMemoriaS()[i].getIdPagina() != null) {
-                this.memoriaSecundaria.append("ID Proceso: " + Integer.toString(this.memoriaVirtual.getMemoriaS()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getMemoriaS()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getMemoriaS()[i].getIdPagina()) + "\n");
+    private void actualizarMemoriaSecundaria() {
+        this.memoriaSecundaria.append("");
+        for (int i = 0; i < this.memoriaVirtual.getAlmacenamiento().length; i++) {
+            if (this.memoriaVirtual.getAlmacenamiento()[i].getIdProceso() != null && this.memoriaVirtual.getAlmacenamiento()[i].getIdPagina() != null) {
+                this.memoriaSecundaria.append("ID Proceso: " + Integer.toString(this.memoriaVirtual.getAlmacenamiento()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getAlmacenamiento()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getAlmacenamiento()[i].getIdPagina()) + "\n");
             }
         }
-
         if (this.memoriaSecundaria.getText().equals("")) {
             this.memoriaSecundaria.append("Memoria secundaria vacia");
         }
     }
+
+    private void moverRamdomMemoriaToAlmacenamiento() {
+        if (memoriaVirtual.getMemoriaPrincipal() == 0) {
+            try {
+                for (int i = 0; i < procesos.length; i++) {
+                    if (procesos[i].getPaginasMemoriaPrincipal() >= 2) {
+                        this.memoriaVirtual.quitarUnaPaginaMemoria(procesos[i]);
+                        break;
+                    }
+                }
+            } catch (NullPointerException e) {
+                for (int i = 0; i < procesos.length; i++) {
+                    if (procesos[i].getPaginasMemoriaPrincipal() == 1) {
+                        this.memoriaVirtual.quitarUnaPaginaMemoria(procesos[i]);
+                        this.mensajes.append("> Se ha suspendido el proceso de id " + procesos[i].getIdProceso() + " porque la memoria esta demasiado llena de procesos.\n");
+                        procesos[i].setEstado("Suspendido");
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void actualizar() {
+        this.cantMSDispon.setText(Integer.toString(memoriaVirtual.getMemoriaSecundaria()));
+        this.cantMPDispon.setText(Integer.toString(memoriaVirtual.getMemoriaPrincipal()));
+        this.mPUsada.setText(Integer.toString(memoriaVirtual.getMemoriaPrincipalTotal() - memoriaVirtual.getMemoriaPrincipal()));
+        actualizarProcesos();
+        actualizarMemoriaPrincipal();
+        actualizarMemoriaSecundaria();
+    }
+
+    private void actualizarProcesos() {
+        for (int i = 0; i < contadorProceso; i++) {
+            this.listaProcesos.append("ID Proceso " + Integer.toString(procesos[i].getIdProceso()) + " Nombre: " + procesos[i].getNombre() + " Tamaño: " + Integer.toString(procesos[i].getTamaño()) + " Cantidad de paginas: " + Integer.toString(procesos[i].getCantidadPaginas()) + " Estado: " + procesos[i].getEstado() + " Cantidad de paginas en memoria principal: " + Integer.toString(procesos[i].getPaginasMemoriaPrincipal()) + " Cantidad de paginas en memoria secundaria: " + Integer.toString(procesos[i].getPaginasMemoriaSecundaria()) + "\n");
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cantMPDispon;
@@ -619,6 +709,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -632,9 +723,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea listaProcesos;
     private javax.swing.JLabel mPUsada;
     private javax.swing.JTextArea memoriaPrincipal;
     private javax.swing.JTextArea memoriaSecundaria;
