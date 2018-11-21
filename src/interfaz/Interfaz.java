@@ -533,6 +533,7 @@ public class Interfaz extends javax.swing.JFrame {
             this.crearProceso.setEnabled(true);
             this.mensajes.append("Los tamaños de la memoria principal, secundaria y de las páginas han sido establecidos con éxito\n");
             this.mostrarMemoriaPrincipal();
+            this.mostrarMemoriaSecundaria();
         } else {
             this.mensajes.append("Los campos correspondientes a la sección de inicio son obligatorios para iniciar la simulación");
         }
@@ -585,6 +586,19 @@ public class Interfaz extends javax.swing.JFrame {
             } else {
                 this.memoriaPrincipal.append("Dirección física:" + " " + "0x" + Integer.toHexString(direccion) + " " + "Nro. Marco: " + Integer.toString(this.memoriaVirtual.getMemoriaP()[i].getIdMarco() + 1) + " Marco disponible\n");
             }
+        }
+    }
+
+    private void mostrarMemoriaSecundaria() {
+
+        for (int i = 0; i < this.memoriaVirtual.getMemoriaS().length; i++) {
+            if (this.memoriaVirtual.getMemoriaS()[i].getIdProceso() != null && this.memoriaVirtual.getMemoriaS()[i].getIdPagina() != null) {
+                this.memoriaSecundaria.append("ID Proceso: " + Integer.toString(this.memoriaVirtual.getMemoriaS()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getMemoriaS()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getMemoriaS()[i].getIdPagina()) + "\n");
+            }
+        }
+
+        if (this.memoriaSecundaria.getText().equals("")) {
+            this.memoriaSecundaria.append("Memoria secundaria vacia");
         }
     }
 
