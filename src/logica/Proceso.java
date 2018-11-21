@@ -43,4 +43,77 @@ public class Proceso {
         return tamaño / tamañoPagina;
     }
 
+    public Pagina[] getTablaPaginas() {
+        return tablaPaginas;
+    }
+
+    public void setTablaPaginas(Pagina[] tablaPaginas) {
+        this.tablaPaginas = tablaPaginas;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getTamaño() {
+        return tamaño;
+    }
+
+    public void setTamaño(int tamaño) {
+        this.tamaño = tamaño;
+    }
+
+    public int getCantidadPaginas() {
+        return cantidadPaginas;
+    }
+
+    public void setCantidadPaginas(int cantidadPaginas) {
+        this.cantidadPaginas = cantidadPaginas;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getPaginasMemoriaPrincipal() {
+        return paginasMemoriaPrincipal;
+    }
+
+    public void setPaginasMemoriaPrincipal(int paginasMemoriaPrincipal) {
+        this.paginasMemoriaPrincipal = paginasMemoriaPrincipal;
+    }
+
+    public int getPaginasMemoriaSecundaria() {
+        return paginasMemoriaSecundaria;
+    }
+
+    public void setPaginasMemoriaSecundaria(int paginasMemoriaSecundaria) {
+        this.paginasMemoriaSecundaria = paginasMemoriaSecundaria;
+    }
+
+    public int getIdProceso() {
+        return idProceso;
+    }
+
+    public void setIdProceso(int idProceso) {
+        this.idProceso = idProceso;
+    }
+
+    public int getTamañoTotal() {
+        return tamañoTotal;
+    }
+
+    public void setTamañoTotal(int tamañoTotal) {
+        this.tamañoTotal = tamañoTotal;
+    }
+
+    
 }

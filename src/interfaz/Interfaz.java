@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import logica.MemoriaVirtual;
 import logica.Proceso;
 
@@ -15,7 +17,8 @@ import logica.Proceso;
 public class Interfaz extends javax.swing.JFrame {
 
     private MemoriaVirtual memoriaVirtual;
-    private Proceso procesos[];
+    //private Proceso procesos[];
+    private Queue<Proceso> procesos;
 
     public Interfaz() {
         initComponents();
@@ -520,7 +523,8 @@ public class Interfaz extends javax.swing.JFrame {
             } else {
                 this.mensajes.setText("Recuerde que los valores ingresados deben ser potencias de 2");
             }
-            this.procesos = new Proceso[memoriaVirtual.getMaxCantPag()];//la cantidad maxima de procesos que se aceptan en el sistema es igual a la cantidad maxima de paginas, ya que un proceso ocupa al menos una pagina
+            //this.procesos = new Proceso[memoriaVirtual.getMaxCantPag()];//la cantidad maxima de procesos que se aceptan en el sistema es igual a la cantidad maxima de paginas, ya que un proceso ocupa al menos una pagina
+            this.procesos = new LinkedList();
             this.establecer.setEnabled(false);
             this.tamMemoriaP.setText(Integer.toString(tamMemoriaP));
             this.cantMPDispon.setText(Integer.toString(tamMemoriaP));
@@ -540,7 +544,26 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_establecerActionPerformed
 
     private void crearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearProcesoActionPerformed
+        if (!"".equals(this.nombreProceso.getText()) && !"".equals(this.tamProceso.getText())) {
+            try {
+                int tamanioProceso = Integer.parseInt(this.tamProceso.getText());
+                int tamanioPag = Integer.parseInt(this.tamPag.getText());
+                //int idProceso, String nombre, int tamaño, int tamañoPagina
+                        
+                Proceso p = new Proceso(1, this.nombreProceso.getText(), tamanioProceso, tamanioPag);
+                p.crearPaginas();
+                for(int i = 0; i < p.getTablaPaginas().length; i++){
+                    this.memoriaVirtual.getMemoriaP()[i] = p.getTablaPaginas()[i];
+                    System.out.println(" " + this.memoriaVirtual.getMemoriaP()[i].getIdProceso());
+                }
+                this.mostrarMemoriaPrincipal();
+                this.memoriaPrincipal.append("hola");
+                //this.procesos.add(new Proceso())
+                
+            } catch (Exception e) {
 
+            }
+        }
     }//GEN-LAST:event_crearProcesoActionPerformed
 
     /**
