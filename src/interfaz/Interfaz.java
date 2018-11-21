@@ -33,6 +33,7 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane5 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         mensajes = new javax.swing.JTextArea();
@@ -86,6 +87,7 @@ public class Interfaz extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 153, 255));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setAutoscrolls(true);
 
         mensajes.setEditable(false);
         mensajes.setColumns(20);
@@ -526,15 +528,17 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        jScrollPane5.setViewportView(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -630,7 +634,7 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     private void actualizarMemoriaPrincipal() {
-        this.memoriaPrincipal.append("");
+        this.memoriaPrincipal.setText("");
         for (int i = 0; i < this.memoriaVirtual.getMemoria().length; i++) {
             if (this.memoriaVirtual.getMemoria()[i].getIdProceso() != null && this.memoriaVirtual.getMemoria()[i].getIdPagina() != null) {
                 int direccion = (this.memoriaVirtual.getMemoria()[i].getIdMarco() * memoriaVirtual.getTamañoPagina());
@@ -643,7 +647,7 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     private void actualizarMemoriaSecundaria() {
-        this.memoriaSecundaria.append("");
+        this.memoriaSecundaria.setText("");
         for (int i = 0; i < this.memoriaVirtual.getAlmacenamiento().length; i++) {
             if (this.memoriaVirtual.getAlmacenamiento()[i].getIdProceso() != null && this.memoriaVirtual.getAlmacenamiento()[i].getIdPagina() != null) {
                 this.memoriaSecundaria.append("ID Proceso: " + Integer.toString(this.memoriaVirtual.getAlmacenamiento()[i].getIdProceso()) + " Nombre del Proceso: " + this.memoriaVirtual.getAlmacenamiento()[i].getNombreProceso() + " Nro. Pagina: " + Integer.toString(this.memoriaVirtual.getAlmacenamiento()[i].getIdPagina()) + "\n");
@@ -728,6 +732,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea listaProcesos;
     private javax.swing.JLabel mPUsada;
     private javax.swing.JTextArea memoriaPrincipal;
